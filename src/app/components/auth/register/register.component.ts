@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterModel } from '../../../models/register.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +13,11 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private snackBar: MatSnackBar
+  ) { }
 
   createForm() {
     this.registerForm = this.formBuilder.group({
@@ -26,8 +32,18 @@ export class RegisterComponent implements OnInit {
     this.createForm();
   }
 
-  onFormSubmit(){
-    console.log(this.registerForm.value);
+  onFormSubmit() {
+    this.authService.register(this.registerForm.value)
+      .subscribe(data => {
+        this.showSnackBar('Registration successful');
+        console.log(data);
+      }, err => {
+        console.log(err);
+      })
+  }
+
+  showSnackBar(msg) {
+    this.snackBar.open(msg, null, { duration: 2000 });
   }
 
   // convenience getter for easy access to form fields
