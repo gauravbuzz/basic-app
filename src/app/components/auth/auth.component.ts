@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _dataService: DataService
+  ) { }
 
   ngOnInit() {
+    this._dataService.dataSource$.subscribe(data => {
+      console.log(data)
+    })
+
+    this._dataService.testBehaviorSubscription();
   }
 
 }

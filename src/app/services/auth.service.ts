@@ -2,7 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
-
+import { RegisterModel } from '../models/register.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,34 +10,28 @@ export class AuthService {
 
   constructor() { }
 
-  userDb = {
-    'gpantbiz@gmail.com':{
-      firstname: 'gaurav',
-      lastname: 'pant',
-      password: 'hello world'
-    }
-  };
+  userDb;
 
-  register(payload){
-    return Observable.create((observer: Observer<any>) => {
+  register(payload) {
+    return Observable.create((observer: Observer<boolean>) => {
       this.userDb[payload.email] = payload;
       observer.next(true);
       observer.complete();
     })
   }
 
-  login(payload){
-    return Observable.create((observer: Observer<any>) => {
-      let user = this.userDb[payload.email];
-      if(!user) {
+  login(payload) {
+    return Observable.create((observer: Observer<RegisterModel>) => {
+      let user: RegisterModel = this.userDb[payload.email];
+      if (!user) {
         observer.error('user not found');
         observer.complete();
       }
-      else if(user.password !== payload.password){
+      else if (user.password !== payload.password) {
         observer.error('invalid credentials');
         observer.complete();
       }
-      else{
+      else {
         observer.next(user);
         observer.complete();
       }
