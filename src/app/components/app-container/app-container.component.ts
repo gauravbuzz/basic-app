@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoingeckoService } from 'src/app/services/coingecko.service';
 
 @Component({
   selector: 'app-app-container',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private coingeckoService: CoingeckoService
+  ) { }
 
   ngOnInit() {
   }
