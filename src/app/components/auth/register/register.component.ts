@@ -36,9 +36,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.registerForm.value)
       .subscribe(data => {
         this.showSnackBar('Registration successful');
-        console.log(data);
       }, err => {
-        console.log(err);
       })
   }
 

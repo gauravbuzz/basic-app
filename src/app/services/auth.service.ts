@@ -10,12 +10,17 @@ export class AuthService {
 
   constructor() { }
 
-  userDb;
+  userDb = {};
 
   register(payload) {
     return Observable.create((observer: Observer<boolean>) => {
-      this.userDb[payload.email] = payload;
-      observer.next(true);
+      if(!this.userDb[payload.email]){
+        this.userDb[payload.email] = payload;
+        observer.next(true);
+      }
+      else{
+        observer.next(false);
+      }
       observer.complete();
     })
   }
@@ -25,16 +30,14 @@ export class AuthService {
       let user: RegisterModel = this.userDb[payload.email];
       if (!user) {
         observer.error('user not found');
-        observer.complete();
       }
       else if (user.password !== payload.password) {
         observer.error('invalid credentials');
-        observer.complete();
       }
       else {
         observer.next(user);
-        observer.complete();
       }
+      observer.complete();
     })
   }
 

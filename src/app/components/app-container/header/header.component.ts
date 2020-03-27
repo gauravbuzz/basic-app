@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   logger(text){
-    console.log(text);
   }
 
   constructor() { }

@@ -16,7 +16,6 @@ export class DataService {
 
   testBehaviorSubscription(){
     this.dataSource$.subscribe(data => {
-      console.log(data);
     })
 
     this.obsDataSource({

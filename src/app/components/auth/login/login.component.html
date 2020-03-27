@@ -5,7 +5,7 @@
         <div class="field">
           <mat-form-field class="form-field" appearance="outline">
             <mat-label>Email</mat-label>
-            <input id="email" matInput formControlName="email" placeholder="Enter your email">
+            <input id="email" matInput formControlName="email">
           </mat-form-field>
         </div>
 
@@ -13,7 +13,7 @@
           <mat-form-field class="form-field" appearance="outline">
             <mat-label>Password</mat-label>
 
-            <input id="password" matInput formControlName="password" placeholder="Enter your password"
+            <input id="password" matInput formControlName="password"
               [type]="hide ? 'password':'text'">
             <mat-icon matSuffix (click)="hide = !hide">
               {{hide ? 'visibility' : 'visibility_off'}}

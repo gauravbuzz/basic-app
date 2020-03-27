@@ -15,4 +15,11 @@ export class MasterhttpService {
     return this.http.get(url);
   }
 
+  makePostRequest(url, payload): Observable<Object> {
+    return this.http.post(url, payload);
+  }
+
+  makePutRequest(url, payload): Observable<Object> {
+    return this.http.put(url, payload);
+  }
 }

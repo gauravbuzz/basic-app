@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  coingeckoApi: 'https://api.coingecko.com/api/v3/'
+  coingeckoApi: 'https://api.coingecko.com/api/v3/',
+  google_client_id: '826436261333-0707nbu0o7l49bb2fpg1nokb33gtllia.apps.googleusercontent.com'
 };
 
 /*

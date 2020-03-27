@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import * as constants from '../../environments/environment';
 import { MasterhttpService } from './masterhttp.service';
 import { Observable, Observer } from 'rxjs';
-const coingeckoApi: string = constants.environment.coingeckoApi;
 import { ApiResponse } from '../models/apiResponse.model';
+const coingeckoApi: string = constants.environment.coingeckoApi;
 @Injectable({
   providedIn: 'root'
 })
@@ -40,5 +40,13 @@ export class CoingeckoService {
 
   ping() {
     return this.createObservable(this.http.makeGetRequest(coingeckoApi + 'ping'));
+  }
+
+  getTickers(){
+
+  }
+
+  getTickerPrices(){
+    
   }
 }
